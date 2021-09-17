@@ -31,9 +31,9 @@ public class FriendMain {
 			} else if (menu == 2) {
 				System.out.println("친구조회메뉴입니다");
 				String search = readStr("친구이름을 입력하세요");
-				for (int i = 0; i < myfr.length; i++) {
-					if (myfr.equals(search)) {
-						System.out.println(myfr[i]);
+				for (Friend friend : myfr) {
+					if (friend != null && friend.getName().equals(search)) {
+						friend.showInfo();
 					}
 				}
 
@@ -46,17 +46,51 @@ public class FriendMain {
 
 			} else if (menu == 4) {
 				System.out.println("친구수정메뉴입니다");
+				String search = readStr("수정할 친구이름을 입력하세요");
+				String phone = readStr("변경할 연락처를 입력하세요[변경x > Enter]");
+				String email = readStr("변경할 이메일을 입력하세요[변경x > Enter]");
+				String height = readStr("변경할 키값을 입력하세요[변경x > Enter]");
+				String weight = readStr("변경할 몸무게값을 입력하세요[변경x > Enter]");
+				boolean is = false;
+				for (int i = 0; i < myfr.length; i++) {
+					if (myfr[i] != null && myfr[i].getName().equals(search)) {
+						if (!phone.equals("")) {
+							myfr[i].setPhone(phone);
+						}
+						if (!email.equals("")) {
+							myfr[i].setEmail(email);
+						}
+						if (!height.equals("")) {
+							myfr[i].setHeight(Integer.parseInt(height));
+						}
+						if (!weight.equals("")) {
+							myfr[i].setWeight(Integer.parseInt(weight));
+						}
+						is = true;
+					}
+
+				}
+				if (is) {
+					System.out.println("수정되었습니다");
+				} else {
+					System.out.println("잘못 입력되었습니다");
+				}
 
 			} else if (menu == 5) {
 				System.out.println("친구삭제메뉴입니다");
+				String search = readStr("삭제할 친구이름을 입력하세요");
+				for (int i = 0; i < myfr.length; i++) {
+					if (myfr[i] != null && myfr[i].getName().equals(search)) {
+						myfr[i] = null;
+					}
+				}
+				System.out.println("삭제완료");
 
 			} else if (menu == 9) {
 				System.out.println("종료되었습니다.");
 				break;
 			}
-
 		}
-
 	}
 
 	public static String readStr(String msg) {

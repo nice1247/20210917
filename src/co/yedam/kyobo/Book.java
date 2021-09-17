@@ -57,4 +57,4 @@ public class Book {
 // double val = Double.parseDouble("23.5");
 //실수값을 가지고 오고 싶으면 위에처럼 사용하세요
 //scn.nextInt() -> int
-//scn.extDouble() -> double
+//scn.nextDouble() -> double
